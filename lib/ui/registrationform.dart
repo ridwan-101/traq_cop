@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:traq_cop/auth/gender_auth.dart';
+import 'package:traq_cop/auth/nationality_auth.dart';
+import 'package:traq_cop/auth/purpose_auth.dart';
+import 'package:traq_cop/auth/state_auth.dart';
 import 'package:traq_cop/ui/next.dart';
-import 'package:traq_cop/ui/validation.dart';
+import 'package:traq_cop/auth/validation.dart';
 
 class RegistrationForm extends StatefulWidget {
   const RegistrationForm({Key? key}) : super(key: key);
@@ -34,7 +38,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   ? 800
                   : MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
-                color: Colors.black,
+                color: Colors.white,
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
                 border: Border.all(color: Colors.grey, width: 1.5),
               ),
@@ -44,11 +48,10 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   child: Container(
                     alignment: Alignment.bottomLeft,
                     child: Form(
-                      key: _formKey, // Attach the _formKey to the Form widget
+                      key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Registration Form Title
                           const Padding(
                             padding: EdgeInsets.only(top: 20.0),
                             child: Center(
@@ -62,7 +65,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
                             ),
                           ),
                           const SizedBox(height: 20),
-
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -121,7 +123,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    TextFormField(
+                                    DropdownButtonFormField<String>(
                                       validator:
                                           FormValidator.validateNationality,
                                       decoration: InputDecoration(
@@ -130,6 +132,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               BorderRadius.circular(8.0),
                                         ),
                                       ),
+                                      items: nationalityOptions
+                                          .map((String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                      onChanged: (String? newValue) {},
                                     ),
                                     const SizedBox(height: 20),
                                     const Text(
@@ -137,7 +147,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    TextFormField(
+                                    DropdownButtonFormField<String>(
                                       validator:
                                           FormValidator.validatePurposeOfEntry,
                                       decoration: InputDecoration(
@@ -146,6 +156,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               BorderRadius.circular(8.0),
                                         ),
                                       ),
+                                      items: purposeOfEntryOptions
+                                          .map((String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                      onChanged: (String? newValue) {},
                                     ),
                                   ],
                                 ),
@@ -191,7 +209,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    TextFormField(
+                                    DropdownButtonFormField<String>(
                                       validator: FormValidator.validateGender,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(
@@ -199,6 +217,13 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               BorderRadius.circular(8.0),
                                         ),
                                       ),
+                                      items: genderOptions.map((String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                      onChanged: (String? newValue) {},
                                     ),
                                     const SizedBox(height: 20),
                                     const Text(
@@ -206,7 +231,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    TextFormField(
+                                    DropdownButtonFormField<String>(
                                       validator: FormValidator
                                           .validateStateOfResidence,
                                       decoration: InputDecoration(
@@ -215,6 +240,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               BorderRadius.circular(8.0),
                                         ),
                                       ),
+                                      items: stateOfResidenceOptions
+                                          .map((String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                      onChanged: (String? newValue) {},
                                     ),
                                     const SizedBox(height: 80),
                                     const Text(""),
@@ -223,7 +256,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 60),
+                          const SizedBox(height: 40),
                           Center(
                             child: ElevatedButton(
                               onPressed: () {
