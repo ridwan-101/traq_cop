@@ -3,7 +3,7 @@ import 'package:traq_cop/auth/gender_auth.dart';
 import 'package:traq_cop/auth/nationality_auth.dart';
 import 'package:traq_cop/auth/purpose_auth.dart';
 import 'package:traq_cop/auth/state_auth.dart';
-import 'package:traq_cop/ui/next.dart';
+import 'package:traq_cop/ui/facecapture.dart';
 import 'package:traq_cop/auth/validation.dart';
 
 class RegistrationForm extends StatefulWidget {
@@ -265,7 +265,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const NextScreen()),
+                                            const FaceCapture()),
                                   );
                                 }
                               },
