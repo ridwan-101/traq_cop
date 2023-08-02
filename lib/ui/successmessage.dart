@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:traq_cop/ui/error_facecapture.dart';
 
-class SucessFaceCapture extends StatefulWidget {
-  const SucessFaceCapture({super.key});
+class SucessMessage extends StatefulWidget {
+  const SucessMessage({super.key});
 
   @override
-  State<SucessFaceCapture> createState() => _SucessFaceCaptureState();
+  State<SucessMessage> createState() => _SucessMessageState();
 }
 
-class _SucessFaceCaptureState extends State<SucessFaceCapture> {
+class _SucessMessageState extends State<SucessMessage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +32,7 @@ class _SucessFaceCaptureState extends State<SucessFaceCapture> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       IconButton(
                         icon: const Icon(Icons.arrow_back),
@@ -41,53 +40,37 @@ class _SucessFaceCaptureState extends State<SucessFaceCapture> {
                           // Implement the functionality to go back if needed.
                         },
                       ),
-                      const SizedBox(width: 20),
-                      const Text(
-                        "Step of 2",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
                     ],
                   ),
-                  const SizedBox(height: 10),
                   Image.asset(
-                    'images/sfaceid.png',
-                    width: 319,
-                    height: 369,
+                    'images/okay.png',
+                    height: 400,
+                    width: 400,
                   ),
-                  const Text(
-                    "Success",
-                    style: TextStyle(
-                      color: Color(0xFF5FD788),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
+                  const Center(
+                    child: Text(
+                      "You have Successfully clocked in \n to TraqCop ",
+                      style: TextStyle(
+                        color: Color(0xFF5FD788),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Image.asset(
-                    'images/ok.png',
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ErrorFaceCapture()),
-                      );
+                      Navigator.pop(context); // Go back to the previous screen
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF1511F4),
                       fixedSize: const Size(507, 62),
                     ),
                     child: const Text(
-                      'Submit',
+                      'Back',
                       style: TextStyle(color: Colors.white),
                     ),
                   )

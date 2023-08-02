@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traq_cop/auth/camerapreview.dart';
 import 'package:traq_cop/ui/succes_facecapture.dart';
 
 class FaceCapture extends StatefulWidget {
@@ -12,24 +13,18 @@ class _FaceCaptureState extends State<FaceCapture> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/traqbg.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/traqbg.png'),
+            fit: BoxFit.cover,
           ),
-          Center(
+        ),
+        child: SingleChildScrollView(
+          child: Center(
             child: Container(
-              width: MediaQuery.of(context).size.width >= 772
-                  ? 772
-                  : MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height >= 895
-                  ? 895
-                  : MediaQuery.of(context).size.height,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+              constraints: const BoxConstraints(maxWidth: 772),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -38,12 +33,17 @@ class _FaceCaptureState extends State<FaceCapture> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.arrow_back),
-                      SizedBox(width: 400),
-                      Text(
+                      IconButton(
+                        icon: const Icon(Icons.arrow_back),
+                        onPressed: () {
+                          // Implement the functionality to go back if needed.
+                        },
+                      ),
+                      const SizedBox(width: 20),
+                      const Text(
                         "Step of 2",
                         style: TextStyle(
                           fontSize: 20,
@@ -53,11 +53,8 @@ class _FaceCaptureState extends State<FaceCapture> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Image.asset(
-                    'images/faceid.png',
-                    width: 319,
-                    height: 369,
-                  ),
+                  CameraPreviewScreen(), // Use the CameraPreviewScreen here
+                  const SizedBox(height: 20),
                   const Text(
                     "Center your face to take a snapshot",
                     style: TextStyle(
@@ -83,30 +80,28 @@ class _FaceCaptureState extends State<FaceCapture> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SucessFaceCapture()),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF1511F4),
-                        fixedSize: const Size(507, 62),
-                      ),
-                      child: const Text(
-                        'Submit',
-                        style: TextStyle(color: Colors.white),
-                      ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SucessFaceCapture()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF1511F4),
+                      fixedSize: const Size(507, 62),
+                    ),
+                    child: const Text(
+                      'Submit',
+                      style: TextStyle(color: Colors.white),
                     ),
                   )
                 ],
               ),
             ),
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
