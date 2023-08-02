@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traq_cop/ui/error_facecapture.dart';
 
 class SucessFaceCapture extends StatefulWidget {
   const SucessFaceCapture({super.key});
@@ -70,9 +71,10 @@ class _SucessFaceCaptureState extends State<SucessFaceCapture> {
                   ),
                   Center(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'images/cancel.png',
+                          'images/ok.png',
                         ),
                       ],
                     ),
@@ -83,7 +85,11 @@ class _SucessFaceCaptureState extends State<SucessFaceCapture> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        // Handle button press
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ErrorFaceCapture()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF1511F4),

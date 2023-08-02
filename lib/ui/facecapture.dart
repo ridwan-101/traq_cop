@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traq_cop/ui/succes_facecapture.dart';
 
 class FaceCapture extends StatefulWidget {
   const FaceCapture({super.key});
@@ -85,7 +86,11 @@ class _FaceCaptureState extends State<FaceCapture> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        // Handle button press
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SucessFaceCapture()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF1511F4),

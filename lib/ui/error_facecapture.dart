@@ -70,6 +70,7 @@ class _ErrorFaceCaptureState extends State<ErrorFaceCapture> {
                   ),
                   Center(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
                           'images/cancel.png',
@@ -83,7 +84,11 @@ class _ErrorFaceCaptureState extends State<ErrorFaceCapture> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        // Handle button press
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ErrorFaceCapture()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF1511F4),
