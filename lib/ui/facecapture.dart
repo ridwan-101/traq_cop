@@ -13,9 +13,10 @@ class FaceCapture extends StatefulWidget {
 }
 
 class _FaceCaptureState extends State<FaceCapture> {
-  List<CameraDescription>? _cameras; // List to hold camera descriptions
-  late CameraController _controller; // CameraController instance
+  List<CameraDescription>? _cameras;
+  late CameraController _controller;
   bool _isCameraReady = false;
+  File? _capturedImageFile;
 
   @override
   void initState() {
@@ -23,11 +24,10 @@ class _FaceCaptureState extends State<FaceCapture> {
     _initializeCamera();
   }
 
-  // Initialize the camera
   Future<void> _initializeCamera() async {
     _cameras = await availableCameras();
     if (_cameras!.isNotEmpty) {
-      final camera = _cameras![0]; // Use the first available camera
+      final camera = _cameras![0];
 
       _controller = CameraController(
         camera,
@@ -56,10 +56,11 @@ class _FaceCaptureState extends State<FaceCapture> {
     }
 
     try {
-      final Directory appDirectory = await getApplicationDocumentsDirectory();
-      final String filePath = '${appDirectory.path}/face_image.jpg';
+      final XFile imageFile = await _controller.takePicture();
 
-      await _controller.takePicture();
+      setState(() {
+        _capturedImageFile = File(imageFile.path);
+      });
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -71,6 +72,12 @@ class _FaceCaptureState extends State<FaceCapture> {
       // Handle errors that occur during image capture
       print('Error capturing image: $e');
     }
+  }
+
+  void _clearCapturedImage() {
+    setState(() {
+      _capturedImageFile = null;
+    });
   }
 
   @override
@@ -116,12 +123,12 @@ class _FaceCaptureState extends State<FaceCapture> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  if (_isCameraReady) // Only show the camera preview if it's ready
+                  if (_isCameraReady)
                     AspectRatio(
                       aspectRatio: _controller.value.aspectRatio,
-                      child: ClipOval(
-                        child: CameraPreview(_controller),
-                      ),
+                      child: _capturedImageFile != null
+                          ? Image.file(_capturedImageFile!)
+                          : CameraPreview(_controller),
                     ),
                   const SizedBox(height: 20),
                   const Text(
@@ -138,7 +145,12 @@ class _FaceCaptureState extends State<FaceCapture> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset('images/cancel.png'),
+                      GestureDetector(
+                        onTap: () {
+                          _clearCapturedImage();
+                        },
+                        child: Image.asset('images/cancel.png'),
+                      ),
                       GestureDetector(
                         onTap: () {
                           _captureImage();
