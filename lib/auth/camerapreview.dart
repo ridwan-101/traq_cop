@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
 class CameraPreviewScreen extends StatefulWidget {
+  final List<CameraDescription> cameras;
+
+  const CameraPreviewScreen({required this.cameras});
+
   @override
   _CameraPreviewScreenState createState() => _CameraPreviewScreenState();
 }
 
 class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
-  late CameraController _cameraController;
-  late List<CameraDescription> _cameras;
+  late CameraController _controller;
+  bool _isReady = false;
 
   @override
   void initState() {
@@ -17,36 +21,41 @@ class _CameraPreviewScreenState extends State<CameraPreviewScreen> {
   }
 
   Future<void> _initializeCamera() async {
-    _cameras = await availableCameras();
-    if (_cameras.length > 0) {
-      _cameraController = CameraController(
-        _cameras[
-            0], // You can choose which camera to use (front or back) by changing the index here.
-        ResolutionPreset.high,
-      );
+    final camera = widget.cameras.first;
 
-      await _cameraController.initialize();
+    _controller = CameraController(
+      camera,
+      ResolutionPreset.high,
+    );
 
-      if (!mounted) return;
-      setState(() {});
-    }
+    await _controller.initialize();
+
+    if (!mounted) return;
+
+    setState(() {
+      _isReady = true;
+    });
   }
 
   @override
   void dispose() {
-    _cameraController?.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_cameraController == null || !_cameraController.value.isInitialized) {
-      return Container();
+    if (!_isReady) {
+      return Container(); // You can show a loading indicator here.
     }
 
     return AspectRatio(
-      aspectRatio: _cameraController.value.aspectRatio,
-      child: CameraPreview(_cameraController),
+      aspectRatio: 3.14159,
+      child: CircleAvatar(
+        child: CameraPreview(
+          _controller,
+        ),
+      ),
     );
   }
 }
