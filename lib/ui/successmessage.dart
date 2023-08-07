@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traq_cop/ui/onboardingscreen.dart';
 
 class SucessMessage extends StatefulWidget {
   const SucessMessage({super.key});
@@ -37,7 +38,11 @@ class _SucessMessageState extends State<SucessMessage> {
                       IconButton(
                         icon: const Icon(Icons.arrow_back),
                         onPressed: () {
-                          // Implement the functionality to go back if needed.
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => OnboardingScreen(),
+                              ));
                         },
                       ),
                     ],
