@@ -41,7 +41,7 @@ class _SucessMessageState extends State<SucessMessage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => OnboardingScreen(),
+                                builder: (context) => const OnboardingScreen(),
                               ));
                         },
                       ),
@@ -68,7 +68,11 @@ class _SucessMessageState extends State<SucessMessage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context); // Go back to the previous screen
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const OnboardingScreen(),
+                          ));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF1511F4),
