@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:path_provider/path_provider.dart';
+
 import 'dart:io';
 
 import 'package:traq_cop/ui/successmessage.dart';
@@ -112,7 +112,7 @@ class _FaceCaptureState extends State<FaceCapture> {
                           Navigator.pop(context);
                         },
                       ),
-                      const SizedBox(width: 20),
+                      const SizedBox(width: 300),
                       const Text(
                         "Step 2",
                         style: TextStyle(
