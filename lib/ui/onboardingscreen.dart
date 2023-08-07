@@ -79,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     'Clock in',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white, // Set text color
+                      color: Colors.white,
                     ),
                   ),
                 )
