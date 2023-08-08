@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:traq_cop/singin%20ui/loginscreen.dart';
+
+import 'package:traq_cop/ui/onboardingscreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginUi(),
+      home: const OnboardingScreen(),
     );
   }
 }

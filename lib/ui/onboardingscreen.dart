@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:traq_cop/singin%20ui/loginscreen.dart';
+
 import 'package:traq_cop/ui/registrationform.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -54,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LoginUi(),
+                          builder: (context) => const LoginScreen(),
                         ));
                   },
                   child: const Text(

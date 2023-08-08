@@ -54,4 +54,18 @@ class FormValidator {
     }
     return null;
   }
+
+  static String? validateUserName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Invalid username';
+    }
+    return null;
+  }
+
+  static String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'invalid password';
+    }
+    return null;
+  }
 }
