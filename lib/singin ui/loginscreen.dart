@@ -2,137 +2,133 @@ import 'package:flutter/material.dart';
 import 'package:traq_cop/auth/validation.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/traqbg.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Center(
-          child: Container(
-            height: 724,
-            width: 661,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+      body: SafeArea(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              'images/traqbg.png',
+              fit: BoxFit.cover,
             ),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 80.0),
-                    child: Center(child: Image.asset("images/mainlogo.png")),
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 352.0,
+                  vertical: 150,
+                ),
+                child: Container(
+                  height: 724,
+                  width: 661,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    alignment: AlignmentDirectional.centerStart,
-                    padding: const EdgeInsets.all(30.0),
-                    child: const Text(
-                      "Welcome\nLogin to see visitor's list",
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            const Text(
-                              "User Name",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 20,
-                              ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'images/mainlogo.png',
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 40),
+                      const Text("Welcome \nLogin to see visitor’s list",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF000000),
+                          )),
+                      const SizedBox(height: 40),
+                      const Text("User Name",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF000000),
+                          )),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        child: TextFormField(
+                          validator: FormValidator.validatePassword,
+                          decoration: const InputDecoration(
+                            hintText: 'Enter user name',
+                            hintStyle: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFFDADADA),
                             ),
-                            SizedBox(
-                              height: 62,
-                              width: 508,
-                              child: TextFormField(
-                                controller: _usernameController,
-                                validator: FormValidator.validateUserName,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                ),
-                              ),
+                            border: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey, width: 2),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
                             ),
-                            const SizedBox(
-                              height: 40,
-                            ),
-                            const Text(
-                              "Password",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 20,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 62,
-                              width: 508,
-                              child: TextFormField(
-                                controller: _passwordController,
-                                validator: FormValidator.validatePassword,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 60,
-                            ),
-                            Center(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {}
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF1511F4),
-                                  fixedSize: const Size(507, 62),
-                                ),
-                                child: const Text(
-                                  'Sign in',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
+                      const SizedBox(height: 20),
+                      const Text("Password",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF000000),
+                          )),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        validator: FormValidator.validatePassword,
+                        decoration: const InputDecoration(
+                          hintText: 'Enter password',
+                          hintStyle: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFFDADADA),
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {}
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF1511F4),
+                            fixedSize: const Size(507, 62),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          child: const Text(
+                            'Next',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      )
                     ],
                   ),
-                ],
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

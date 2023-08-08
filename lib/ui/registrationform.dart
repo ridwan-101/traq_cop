@@ -272,6 +272,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF1511F4),
                                 fixedSize: const Size(507, 62),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
                               ),
                               child: const Text(
                                 'Next',
