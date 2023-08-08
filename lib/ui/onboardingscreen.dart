@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traq_cop/singin%20ui/loginscreen.dart';
 import 'package:traq_cop/ui/registrationform.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -49,7 +50,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       side: const BorderSide(color: Colors.white, width: 2),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginUi(),
+                        ));
+                  },
                   child: const Text(
                     'Sign in',
                     style: TextStyle(
