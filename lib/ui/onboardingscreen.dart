@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:traq_cop/singin%20ui/loginscreen.dart';
+import 'package:traq_cop/singin/loginscreen.dart';
 
 import 'package:traq_cop/ui/registrationform.dart';
 
