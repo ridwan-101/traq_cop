@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:traq_cop/auth/validation.dart';
+import 'package:traq_cop/singin/entryrecord.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -9,20 +9,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  bool _obscurePassword = true;
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
-  Future<void> _signInWithEmailAndPassword(
-      String email, String password) async {
-    try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    } on FirebaseAuthException catch (e) {
-      print('Sign-in error: ${e.message}');
-    }
-  }
+  bool _obscurePassword = true; // State to toggle password visibility
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +25,19 @@ class _LoginScreenState extends State<LoginScreen> {
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 32.0, // Adjust as needed
-                  vertical: 64, // Adjust as needed
+                  horizontal: 352.0,
+                  vertical: 150,
                 ),
                 child: Form(
                   key: _formKey,
                   child: Container(
-                    height: 552, // Adjust as needed
+                    height: 752,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
                     padding: const EdgeInsets.symmetric(
-                        vertical: 20, horizontal: 20),
+                        vertical: 20, horizontal: 50),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -63,14 +50,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 40),
                         const Text("Welcome \nLogin to see visitor’s list",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w800,
                               color: Color(0xFF000000),
                             )),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 40),
                         const Text("User Name",
                             style: TextStyle(
                               fontSize: 18,
@@ -105,15 +92,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 20),
                         TextFormField(
                           validator: FormValidator.validatePassword,
-                          obscureText: _obscurePassword,
+                          obscureText:
+                              _obscurePassword, // Toggle based on state
                           decoration: InputDecoration(
                             hintText: 'Enter password',
-                            hintStyle: const TextStyle(
+                            hintStyle: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: Color(0xFFDADADA),
                             ),
-                            border: const OutlineInputBorder(
+                            border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(8)),
                             ),
@@ -131,21 +119,22 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 40),
                         Center(
                           child: ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                _signInWithEmailAndPassword(
-                                  'user@example.com',
-                                  'password123',
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EntryRecord()),
                                 );
                               }
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF1511F4),
-                              fixedSize:
-                                  const Size(320, 48), // Adjust as needed
+                              fixedSize: const Size(507, 62),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                               ),

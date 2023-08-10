@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:traq_cop/ui/onboardingscreen.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
 }
 

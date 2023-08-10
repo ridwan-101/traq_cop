@@ -40,22 +40,6 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-<script>
-  // Initialize Firebase with your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDP3aTI3hlpn8V-Dea6bMiq1kkDuneipIQ",
-    authDomain: "traqcop.firebaseapp.com",
-    projectId: "traqcop",
-    storageBucket: "traqcop.appspot.com",
-    messagingSenderId: "867502544239",
-    appId: "1:867502544239:web:8315d9ffb927da6425c49a",
-    measurementId: "G-F8QNLH4WJD"
-  };
-  firebase.initializeApp(firebaseConfig);
-</script>
-
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
@@ -70,6 +54,28 @@
         }
       });
     });
+  </script>
+
+  <!-- Firebase Initialization Script -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDP3aTI3hlpn8V-Dea6bMiq1kkDuneipIQ",
+      authDomain: "traqcop.firebaseapp.com",
+      projectId: "traqcop",
+      storageBucket: "traqcop.appspot.com",
+      messagingSenderId: "867502544239",
+      appId: "1:867502544239:web:8315d9ffb927da6425c49a",
+      measurementId: "G-F8QNLH4WJD"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
   </script>
 </body>
 </html>
