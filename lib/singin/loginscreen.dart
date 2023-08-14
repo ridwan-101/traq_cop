@@ -96,12 +96,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               _obscurePassword, // Toggle based on state
                           decoration: InputDecoration(
                             hintText: 'Enter password',
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: Color(0xFFDADADA),
                             ),
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(8)),
                             ),
