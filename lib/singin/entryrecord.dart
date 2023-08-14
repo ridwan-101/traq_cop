@@ -16,7 +16,7 @@ class _EntryRecordState extends State<EntryRecord> {
           width: 1038,
           height: 779.7,
           decoration: const BoxDecoration(
-            color: Colors.grey,
+            color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           padding: const EdgeInsets.all(20),
@@ -69,6 +69,39 @@ class _EntryRecordState extends State<EntryRecord> {
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(
+                  height:
+                      20), // Adding space between the search bar and the new box
+              Container(
+                width: 1308,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1511F4),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "Name",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    Text("Email",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold)),
+                    Text("Date",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold)),
+                    Text("Entry Time",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold)),
+                    Text("Purpose",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold)),
+                  ],
+                ),
               ),
             ],
           ),
