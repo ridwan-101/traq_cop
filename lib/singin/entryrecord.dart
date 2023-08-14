@@ -1,15 +1,79 @@
 import 'package:flutter/material.dart';
 
 class EntryRecord extends StatefulWidget {
-  const EntryRecord({super.key});
+  const EntryRecord({Key? key}) : super(key: key);
 
   @override
-  State<EntryRecord> createState() => _EntryRecordState();
+  _EntryRecordState createState() => _EntryRecordState();
 }
 
 class _EntryRecordState extends State<EntryRecord> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Center(
+        child: Container(
+          width: 1038,
+          height: 779.7,
+          decoration: const BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              const Text(
+                "Entry Records",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 50),
+              ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 370,
+                    height: 51,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: "Search",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(
+                            color: Colors.black,
+                          ),
+                        ),
+                        prefixIcon: const Icon(Icons.search),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 150,
+                    height: 51,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1511F4),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Storage",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
