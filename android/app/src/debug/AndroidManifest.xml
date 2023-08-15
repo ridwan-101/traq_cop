@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.your_app_package_name"> <!-- Replace "com.example.your_app_package_name" with your actual package name -->
+    package="com.example.traq_cop"> <!-- Replace "com.example.your_app_package_name" with your actual package name -->
 
     <!-- Other manifest declarations -->
 
