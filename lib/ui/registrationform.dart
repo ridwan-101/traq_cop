@@ -5,6 +5,7 @@ import 'package:traq_cop/auth/purpose_auth.dart';
 import 'package:traq_cop/auth/state_auth.dart';
 import 'package:traq_cop/ui/facecapture.dart';
 import 'package:traq_cop/auth/validation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegistrationForm extends StatefulWidget {
   const RegistrationForm({Key? key}) : super(key: key);
@@ -15,6 +16,10 @@ class RegistrationForm extends StatefulWidget {
 
 class _RegistrationFormState extends State<RegistrationForm> {
   final _formKey = GlobalKey<FormState>();
+  String firstName = '';
+  String lastName = '';
+  String email = '';
+  String purpose = '';
 
   @override
   Widget build(BuildContext context) {
@@ -259,8 +264,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
                           const SizedBox(height: 40),
                           Center(
                             child: ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
+                                  final prefs =
+                                      await SharedPreferences.getInstance();
+                                  final registrationData =
+                                      (firstName, lastName, email, purpose);
+                                  prefs.setString('entryRecord',
+                                      registrationData.toString());
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
